@@ -17,11 +17,10 @@ class CreateBarangsTable extends Migration
             $table->id();
             $table->string('nama_barang');
             $table->integer('harga');
-            $table->integer('stocks');
-            $table->longText('deskripsi');
-            $table->string('gambar');
-            $table->string('slug');
             $table->integer('berat');
+            $table->integer('stocks');
+            $table->string('gambar');
+            $table->longText('deskripsi');
             $table->timestamps();
         });
     }

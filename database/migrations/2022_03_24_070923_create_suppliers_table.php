@@ -18,7 +18,7 @@ class CreateSuppliersTable extends Migration
             $table->string('nama_supplier');
             $table->string('alamat');
             $table->string('no_telp');
-            $table->string('deskripsi');
+            $table->longText('deskripsi');
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ class CreateBarangOutsTable extends Migration
     {
         Schema::create('barang_outs', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('barang_id');
             $table->string('nama_pembeli');
             $table->dateTime('tanggal_keluar');
             $table->integer('jumlah');
