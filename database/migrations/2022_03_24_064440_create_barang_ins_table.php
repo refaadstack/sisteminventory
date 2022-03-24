@@ -15,6 +15,11 @@ class CreateBarangInsTable extends Migration
     {
         Schema::create('barang_ins', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('barang_id')->unsigned();
+            $table->bigInteger('supplier_id')->unsigned();
+            $table->datetime('tanggal_masuk')->nullable();
+            $table->integer('jumlah');
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
         });
     }
