@@ -14,7 +14,8 @@ class BarangOutController extends Controller
      */
     public function index()
     {
-        //
+        $barang_out = BarangOut::all();
+        return view('backend.barangout.index', compact(['barang_out']));
     }
 
     /**

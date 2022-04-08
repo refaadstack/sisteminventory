@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangInController;
+use App\Http\Controllers\BarangOutController;
+use App\Models\Barang;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +27,19 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+route::get('/barang', App\Http\Livewire\Barang\Index::class)->name('barang.index');
+route::get('/barang/create', App\Http\Livewire\Barang\Create::class)->name('barang.create');
+route::get('/barang/edit/{id}', App\Http\Livewire\Barang\Edit::class)->name('barang.edit');
+
+
+Route::resource('user', UserController::class);
+// Route::resource('barang', BarangController::class);
+Route::resource('barangin', BarangInController::class);
+Route::resource('barangout', BarangOutController::class);
+Route::resource('supplier', SupplierController::class);
+Route::resource('penjualan', PenjualanController::class);
+
 
 require __DIR__.'/auth.php';
