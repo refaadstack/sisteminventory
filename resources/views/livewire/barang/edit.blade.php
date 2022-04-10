@@ -57,10 +57,6 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                        {{-- @if ($gambar)
-                            Photo Preview:
-                            <img src="{{ $gambar->temporaryUrl() }}">
-                        @endif --}}
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>

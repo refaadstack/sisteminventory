@@ -33,12 +33,18 @@ route::get('/barang', App\Http\Livewire\Barang\Index::class)->name('barang.index
 route::get('/barang/create', App\Http\Livewire\Barang\Create::class)->name('barang.create');
 route::get('/barang/edit/{id}', App\Http\Livewire\Barang\Edit::class)->name('barang.edit');
 
+// supplier
+
+route::get('supplier', App\Http\Livewire\Supplier\Index::class)->name('supplier.index');
+route::get('supplier/create', App\Http\Livewire\Supplier\Create::class)->name('supplier.create');
+route::get('supplier/edit/{id}', App\Http\Livewire\Supplier\Edit::class)->name('supplier.edit');
+
 
 Route::resource('user', UserController::class);
 // Route::resource('barang', BarangController::class);
 Route::resource('barangin', BarangInController::class);
 Route::resource('barangout', BarangOutController::class);
-Route::resource('supplier', SupplierController::class);
+// Route::resource('supplier', SupplierController::class);
 Route::resource('penjualan', PenjualanController::class);
 
 

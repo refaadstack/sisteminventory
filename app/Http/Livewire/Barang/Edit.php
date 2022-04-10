@@ -65,14 +65,6 @@ class Edit extends Component
 
         if($this->barang_id){
             $barang = Barang::find($this->barang_id);
-            
-            
-            // if (isset($input['gambar'])) {
-            //     $filename = $input['gambar'];
-
-            //     $barang->update($filename);
-                
-            // }
 
             if($barang){
                 $barang->update([
