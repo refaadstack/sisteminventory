@@ -28,23 +28,27 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-
+// barang
 route::get('/barang', App\Http\Livewire\Barang\Index::class)->name('barang.index');
 route::get('/barang/create', App\Http\Livewire\Barang\Create::class)->name('barang.create');
 route::get('/barang/edit/{id}', App\Http\Livewire\Barang\Edit::class)->name('barang.edit');
 
 // supplier
-
 route::get('supplier', App\Http\Livewire\Supplier\Index::class)->name('supplier.index');
 route::get('supplier/create', App\Http\Livewire\Supplier\Create::class)->name('supplier.create');
 route::get('supplier/edit/{id}', App\Http\Livewire\Supplier\Edit::class)->name('supplier.edit');
 
+// barangIn
+route::get('barang-masuk', App\Http\Livewire\BarangIn\Index::class)->name('barangIn.index');
+route::get('barang-masuk/create', App\Http\Livewire\BarangIn\Create::class)->name('barangIn.create');
+
+// barangOut
+route::get('barang-keluar', App\Http\Livewire\BarangOut\Index::class)->name('barangOut.index');
+route::get('barang-keluar/create', App\Http\Livewire\BarangOut\Create::class)->name('barangOut.create');
+
 
 Route::resource('user', UserController::class);
-// Route::resource('barang', BarangController::class);
-Route::resource('barangin', BarangInController::class);
-Route::resource('barangout', BarangOutController::class);
-// Route::resource('supplier', SupplierController::class);
+// Route::resource('barangout', BarangOutController::class);
 Route::resource('penjualan', PenjualanController::class);
 
 
