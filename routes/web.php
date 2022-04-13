@@ -7,6 +7,7 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BarangInController;
 use App\Http\Controllers\BarangOutController;
+use App\Http\Controllers\ExportController;
 use App\Models\Barang;
 
 /*
@@ -52,7 +53,11 @@ route::group(['middleware'=>['auth','checkRole:admin,superAdmin']],function(){
     // Route::resource('user', UserController::class);
     // Route::resource('barangout', BarangOutController::class);
     route::get('/', App\http\Livewire\Dashboard\Index::class)->name('home.index');
-    Route::resource('penjualan', PenjualanController::class);
+    // Route::resource('penjualan', PenjualanController::class);
+    route::get('/export/barang', [ExportController::class, 'exportbarang'])->name('export.barang');
+    route::get('/export/barangIn', [ExportController::class, 'exportbarangIn'])->name('export.barangIn');
+    route::get('/export/barangOut', [ExportController::class, 'exportbarangOut'])->name('export.barangOut');
+    route::get('/export/supplier', [ExportController::class, 'exportsupplier'])->name('export.supplier');
 });
 
 
