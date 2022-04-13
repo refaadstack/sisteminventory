@@ -44,7 +44,10 @@
                         <td>{{ $item->deskripsi }}</td>
                         <td>
                           <a href="{{ route('barang.edit',$item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+
+                          @if (Auth::user()->role == 'superAdmin')
                           <button wire:click="destroy({{ $item->id }})" class="btn btn-sm btn-danger">Hapus</button>
+                          @endif
                         </td>
                     </tr>
                     @endforeach

@@ -20,36 +20,46 @@ use App\Models\Barang;
 |
 */
 
-Route::get('/', function () {
-    return view('backend.master.master');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// barang
-route::get('/barang', App\Http\Livewire\Barang\Index::class)->name('barang.index');
-route::get('/barang/create', App\Http\Livewire\Barang\Create::class)->name('barang.create');
-route::get('/barang/edit/{id}', App\Http\Livewire\Barang\Edit::class)->name('barang.edit');
+route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
 
-// supplier
-route::get('supplier', App\Http\Livewire\Supplier\Index::class)->name('supplier.index');
-route::get('supplier/create', App\Http\Livewire\Supplier\Create::class)->name('supplier.create');
-route::get('supplier/edit/{id}', App\Http\Livewire\Supplier\Edit::class)->name('supplier.edit');
+route::group(['middleware'=>['auth','checkRole:admin,superAdmin']],function(){
 
-// barangIn
-route::get('barang-masuk', App\Http\Livewire\BarangIn\Index::class)->name('barangIn.index');
-route::get('barang-masuk/create', App\Http\Livewire\BarangIn\Create::class)->name('barangIn.create');
+    // barang    
+    route::get('/barang', App\Http\Livewire\Barang\Index::class)->name('barang.index');
+    route::get('/barang/create', App\Http\Livewire\Barang\Create::class)->name('barang.create');
+    route::get('/barang/edit/{id}', App\Http\Livewire\Barang\Edit::class)->name('barang.edit');
+    
+    // supplier
+    route::get('supplier', App\Http\Livewire\Supplier\Index::class)->name('supplier.index');
+    route::get('supplier/create', App\Http\Livewire\Supplier\Create::class)->name('supplier.create');
+    route::get('supplier/edit/{id}', App\Http\Livewire\Supplier\Edit::class)->name('supplier.edit');
 
-// barangOut
-route::get('barang-keluar', App\Http\Livewire\BarangOut\Index::class)->name('barangOut.index');
-route::get('barang-keluar/create', App\Http\Livewire\BarangOut\Create::class)->name('barangOut.create');
+    // barangIn
+    route::get('barang-masuk', App\Http\Livewire\BarangIn\Index::class)->name('barangIn.index');
+    route::get('barang-masuk/create', App\Http\Livewire\BarangIn\Create::class)->name('barangIn.create');
+
+    // barangOut
+    route::get('barang-keluar', App\Http\Livewire\BarangOut\Index::class)->name('barangOut.index');
+    route::get('barang-keluar/create', App\Http\Livewire\BarangOut\Create::class)->name('barangOut.create');
+
+    // Route::resource('user', UserController::class);
+    // Route::resource('barangout', BarangOutController::class);
+    route::get('/', App\http\Livewire\Dashboard\Index::class)->name('home.index');
+    Route::resource('penjualan', PenjualanController::class);
+});
 
 
-Route::resource('user', UserController::class);
-// Route::resource('barangout', BarangOutController::class);
-Route::resource('penjualan', PenjualanController::class);
-
-
+route::group(['middleware'=>['auth','checkRole:superAdmin']],function(){
+    // User
+    route::get('user', App\Http\Livewire\User\Index::class)->name('user.index');
+    route::get('user/create', App\Http\Livewire\User\Create::class)->name('user.create');
+    route::get('user/edit/{id}', App\Http\Livewire\User\Edit::class)->name('user.edit');
+});
 require __DIR__.'/auth.php';

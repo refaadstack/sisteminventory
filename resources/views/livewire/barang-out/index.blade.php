@@ -30,7 +30,9 @@
                         <th>Tanggal keluar</th>
                         <th>Jumlah</th>
                         {{-- <th>Di input oleh</th> --}}
+                        @if (Auth::user()->role == 'superAdmin')
                         <th>Aksi</th>
+                        @endif
                       </tr>
                     
                     @foreach ($barangOut as $item)
@@ -41,9 +43,11 @@
                         <td>{{ date('j F Y', strtotime($item->tanggal_keluar)) }}</td>
                         <td>{{ $item->jumlah }}</td>
                         {{-- <td>{{ $item->user->role }} - {{ $item->user->name }}</td> --}}
+                        @if (Auth::user()->role == 'superAdmin')
                         <td>
                           <button wire:click="destroy({{ $item->id }})" class="btn btn-sm btn-danger">Hapus</button>
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                   </tbody>
