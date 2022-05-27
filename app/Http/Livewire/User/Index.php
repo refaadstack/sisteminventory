@@ -11,9 +11,10 @@ class Index extends Component
     {
         return view('livewire.user.index', ['user'=> User::paginate(10)])->extends('backend.master.master')->section('content');
     }
-    public function destroy()
+    public function destroy($userId)
     {
-        $user = User::find($this->id);
+        $user = User::find($userId);
+        $user->barangIn()->delete();
         $user->delete();
         session()->flash('message', 'Data berhasil dihapus');
         return redirect()->route('user.index');
