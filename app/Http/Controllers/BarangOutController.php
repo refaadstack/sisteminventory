@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BarangOut;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 
 class BarangOutController extends Controller
@@ -79,8 +80,17 @@ class BarangOutController extends Controller
      * @param  \App\Models\BarangOut  $barangOut
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BarangOut $barangOut)
+    public function destroy($id)
     {
-        //
+        $barangOut= BarangOut::findOrFail($id);
+        $qty = Barang::find($barangOut->barang_id)->stocks;
+        $qty = $qty + $barangOut->jumlah;
+        Barang::find($barangOut->barang_id)->update([
+            'stocks' => $qty,
+        ]);
+
+        $barangOut->delete();
+
+        return back()->with('success','Data berhasil dihapus');
     }
 }

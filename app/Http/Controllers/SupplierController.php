@@ -79,8 +79,11 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function destroy($id)
     {
-        //
+        $supplier = Supplier::find($id);
+        $supplier->barangIn()->delete();
+        $supplier->delete();
+        return redirect()->route('supplier.index')->with('success', 'Supplier deleted successfully');
     }
 }

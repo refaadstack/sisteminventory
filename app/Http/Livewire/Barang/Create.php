@@ -31,7 +31,11 @@ class Create extends Component
         
         $filename = md5($this->gambar->getClientOriginalName() . time()) . '.' . $this->gambar->getClientOriginalExtension();
 
-        Storage::disk('public')->putFileAs('gambar', $this->gambar, $filename);
+        
+        $destinationPath = 'gambar';
+        $filename = $this->gambar->storeAs($destinationPath, $filename, 'public');
+
+        // Storage::disk('public')->putFileAs('gambar', $this->gambar, $filename);
         
         $barang = Barang::create([
             'nama_barang' => $this->nama_barang,
@@ -42,8 +46,7 @@ class Create extends Component
             'deskripsi' => $this->deskripsi,
         ]);
 
-        session()->flash('message', 'Data berhasil ditambahkan');
-        return redirect()->route('barang.index');
+        return redirect()->route('barang.index')->with('success', 'Data berhasil ditambahkan');
         
     }
 

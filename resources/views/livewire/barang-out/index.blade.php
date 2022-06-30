@@ -11,12 +11,18 @@
             </div>
         </div>
         <div class="card-wrap">
-            @if (session()->has('message'))
-              <div class="alert alert-success">
-                {{ session('message') }}
-              </div>
-              
-            @endif
+          @if(Session::has('success'))
+              <script type="text/javascript">
+                  function massge() {
+                  swal(
+                              'Good job!',
+                              'Data Berhasil disimpan!',
+                              'success'
+                          );
+                  }
+                  window.onload = massge;
+              </script>
+          @endif
             <a href="{{ route('barangOut.create') }}" class="btn btn-primary mb-2">Tambah</a>
             <div class="card-header bg-primary text-light">Tabel data Barang keluar</div>
             <div class="card-body p-0">
@@ -45,7 +51,11 @@
                         {{-- <td>{{ $item->user->role }} - {{ $item->user->name }}</td> --}}
                         @if (Auth::user()->role == 'superAdmin')
                         <td>
-                          <button wire:click="destroy({{ $item->id }})" class="btn btn-sm btn-danger">Hapus</button>
+                          <form method="POST" action="{{ route('barangOut.destroy', $item->id) }}">
+                            @csrf
+                            <input name="_method" type="hidden" value="DELETE">
+                            <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Delete</button>
+                        </form>
                         </td>
                         @endif
                     </tr>
@@ -60,3 +70,27 @@
 </div>
 
 </div>
+@push('scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+   $('.show_confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Kamu yakin mau hapus data ini?`,
+              text: "data yang berkaitan dengan data ini juga akan hilang loh",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      }); 
+</script>
+  
+@endpush

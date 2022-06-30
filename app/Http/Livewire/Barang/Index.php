@@ -23,16 +23,24 @@ class Index extends Component
 
     }
 
-    public function destroy($postId){
-        $barang = Barang::find($postId);
+    // public function destroy($postId){
+    //     $barang = Barang::find($postId);
 
-        if($barang){
-            $barang->delete();
-            Storage::delete($barang->gambar);
+    //     if($barang){
+    //         $barang->delete();
+    //         Storage::delete($barang->gambar);
             
-        }
+    //     }
 
-        session()->flash('message', 'Data berhasil dihapus');
-        return redirect()->route('barang.index');
+    //     session()->flash('message', 'Data berhasil dihapus');
+    //     return redirect()->route('barang.index');
+    // }
+
+    public function destroy($orderId)
+    {
+        Barang::find($orderId)->delete();
+
+        session()->flash('message','Order deleted successfully!');
     }
+
 }

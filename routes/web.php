@@ -36,19 +36,23 @@ route::group(['middleware'=>['auth','checkRole:admin,superAdmin']],function(){
     route::get('/barang', App\Http\Livewire\Barang\Index::class)->name('barang.index');
     route::get('/barang/create', App\Http\Livewire\Barang\Create::class)->name('barang.create');
     route::get('/barang/edit/{id}', App\Http\Livewire\Barang\Edit::class)->name('barang.edit');
+    route::delete('/barang/destroy/{id}', [BarangController::class,'destroy'])->name('barang.destroy');
     
     // supplier
     route::get('supplier', App\Http\Livewire\Supplier\Index::class)->name('supplier.index');
     route::get('supplier/create', App\Http\Livewire\Supplier\Create::class)->name('supplier.create');
     route::get('supplier/edit/{id}', App\Http\Livewire\Supplier\Edit::class)->name('supplier.edit');
+    route::delete('supplier/destroy/{id}', [SupplierController::class,'destroy'])->name('supplier.destroy');
 
     // barangIn
     route::get('barang-masuk', App\Http\Livewire\BarangIn\Index::class)->name('barangIn.index');
     route::get('barang-masuk/create', App\Http\Livewire\BarangIn\Create::class)->name('barangIn.create');
+    route::delete('/barangin/destroy/{id}', [BarangInController::class,'destroy'])->name('barangIn.destroy');
 
     // barangOut
     route::get('barang-keluar', App\Http\Livewire\BarangOut\Index::class)->name('barangOut.index');
     route::get('barang-keluar/create', App\Http\Livewire\BarangOut\Create::class)->name('barangOut.create');
+    route::delete('/barangOut/destroy/{id}', [BarangOutController::class,'destroy'])->name('barangOut.destroy');
 
     // Route::resource('user', UserController::class);
     // Route::resource('barangout', BarangOutController::class);
@@ -66,5 +70,6 @@ route::group(['middleware'=>['auth','checkRole:superAdmin']],function(){
     route::get('user', App\Http\Livewire\User\Index::class)->name('user.index');
     route::get('user/create', App\Http\Livewire\User\Create::class)->name('user.create');
     route::get('user/edit/{id}', App\Http\Livewire\User\Edit::class)->name('user.edit');
+    route::delete('/user/destroy/{id}', [UserController::class,'destroy'])->name('user.destroy');
 });
 require __DIR__.'/auth.php';

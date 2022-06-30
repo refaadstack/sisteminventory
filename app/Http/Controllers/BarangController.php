@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BarangIn;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 
-class BarangInController extends Controller
+class BarangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class BarangInController extends Controller
      */
     public function index()
     {
-        $barang = BarangIn::all();
-        return view('backend.barangin.index', compact(['barang']));
+        //
     }
 
     /**
@@ -81,14 +80,12 @@ class BarangInController extends Controller
      */
     public function destroy($id)
     {
-        $barangIn = BarangIn::findOrFail($id);
-        $qty = Barang::find($barangIn->barang_id)->stocks;
-        $qty = $qty - $barangIn->jumlah;
-        Barang::find($barangIn->barang_id)->update([
-            'stocks' => $qty,
-        ]);
-        $barangIn->delete();
+        $barang = Barang::findOrFail($id);
+        $barang->barangIn->delete();
+        $barang->barangOut->delete();
+        $barang->delete();
 
         return back()->with('success','Data berhasil dihapus');
+
     }
 }
