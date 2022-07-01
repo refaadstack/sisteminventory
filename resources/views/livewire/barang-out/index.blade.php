@@ -35,6 +35,7 @@
                         <th>Nama Pembeli</th>
                         <th>Tanggal keluar</th>
                         <th>Jumlah</th>
+                        <th>Status</th>
                         {{-- <th>Di input oleh</th> --}}
                         @if (Auth::user()->role == 'superAdmin')
                         <th>Aksi</th>
@@ -48,6 +49,11 @@
                         <td>{{ $item->nama_pembeli }}</td>
                         <td>{{ date('j F Y', strtotime($item->tanggal_keluar)) }}</td>
                         <td>{{ $item->jumlah }}</td>
+                        <td>@if ($item->status =="0")
+                            <span class="badge badge-warning">Belum lunas</span>
+                            @else
+                            <span class="badge badge-success">Lunas</span>
+                        @endif</td>
                         {{-- <td>{{ $item->user->role }} - {{ $item->user->name }}</td> --}}
                         @if (Auth::user()->role == 'superAdmin')
                         <td>
