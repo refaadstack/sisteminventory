@@ -27,7 +27,12 @@
                     <td class="text-dark">{{ $item->nama_pembeli }}</td>
                     <td class="text-dark">{{ date('j F Y', strtotime($item->tanggal_keluar)) }}</td>
                     <td class="text-dark">{{ $item->jumlah }}</td>
-                    <td class="text-dark">{{ $item->status }}</td>
+                    <td class="text-dark">@if ($item->status =="0")
+                        <span class="badge badge-warning">Belum lunas</span>
+                        @else
+                        <span class="badge badge-success">Lunas</span>
+                        
+                    @endif</td>
                 </tr>    
                 
                 @endforeach
