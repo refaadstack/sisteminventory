@@ -16,6 +16,7 @@ class Edit extends Component
             $nama_barang, 
             $harga,
             $stocks,
+            $kategori,
             $berat, 
             $gambar,
             $deskripsi;
@@ -26,6 +27,7 @@ class Edit extends Component
             if($barang){
                 $this->barang_id = $barang->id;
                 $this->nama_barang = $barang->nama_barang;
+                $this->kategori = $barang->kategori;
                 $this->harga = $barang->harga;
                 $this->stocks = $barang->stocks;
                 $this->berat = $barang->berat;
@@ -43,6 +45,7 @@ class Edit extends Component
         $this->validate([
             'nama_barang'   => 'required',
             'harga'         => 'required',
+            'kategori'      => 'required',
             'stocks'          => 'required',
             'berat'         => 'required',
             'gambar'        => 'required',
@@ -70,6 +73,7 @@ class Edit extends Component
                 $barang->update([
                     'nama_barang'   => $this->nama_barang,
                     'harga'         => $this->harga,
+                    'kategori'      => $this->kategori,
                     'stocks'        => $this->stocks,
                     'berat'         => $this->berat,
                     'gambar'        => $filename,

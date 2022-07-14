@@ -52,6 +52,7 @@ route::group(['middleware'=>['auth','checkRole:admin,superAdmin']],function(){
     // barangOut
     route::get('barang-keluar', App\Http\Livewire\BarangOut\Index::class)->name('barangOut.index');
     route::get('barang-keluar/create', App\Http\Livewire\BarangOut\Create::class)->name('barangOut.create');
+    route::get('barang-keluar/edit/{id}', App\Http\Livewire\BarangOut\Edit::class)->name('barangOut.edit');
     route::delete('/barangOut/destroy/{id}', [BarangOutController::class,'destroy'])->name('barangOut.destroy');
 
     // Route::resource('user', UserController::class);

@@ -14,6 +14,7 @@ class Create extends Component
     public $nama_barang;
     public $harga;
     public $stocks;
+    public $kategori;
     public $gambar;
     public $berat;
     public $deskripsi;
@@ -24,6 +25,7 @@ class Create extends Component
             'nama_barang' => 'required',
             'harga' => 'required',
             'stocks' => 'required',
+            'kategori' => 'required',
             'gambar' => 'required',
             'berat' => 'required',
             'deskripsi' => 'required',
@@ -41,6 +43,7 @@ class Create extends Component
             'nama_barang' => $this->nama_barang,
             'harga' => $this->harga,
             'stocks' => $this->stocks,
+            'kategori' => $this->kategori,
             'berat' => $this->berat,
             'gambar' => $filename,
             'deskripsi' => $this->deskripsi,

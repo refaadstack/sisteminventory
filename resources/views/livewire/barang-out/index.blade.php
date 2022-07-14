@@ -52,13 +52,17 @@
                         <td>{{ $item->jumlah }}</td>
                         <td>@if ($item->status =="0")
                             <span class="badge badge-warning">Belum lunas</span>
+                            @elseif ($item->status =="2")
+                            <span class="badge badge-danger">Barang Rusak</span>
                             @else
                             <span class="badge badge-success">Lunas</span>
                         @endif</td>
                         <td><a href="{{ route('export.notaKeluar',$item->id) }}" class="btn btn-light">Print Nota</a></td>
                         {{-- <td>{{ $item->user->role }} - {{ $item->user->name }}</td> --}}
-                        @if (Auth::user()->role == 'superAdmin')
                         <td>
+                          <a href="{{ route('barangOut.edit',$item->id) }}" class="btn btn-sm btn-warning mb-2">Edit</a>
+                          @if (Auth::user()->role == 'superAdmin')
+
                           <form method="POST" action="{{ route('barangOut.destroy', $item->id) }}">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">

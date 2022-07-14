@@ -31,6 +31,7 @@
                       <tr>
                         <th>No</th>
                         <th>Nama barang</th>
+                        <th>Kategori</th>
                         <th>Harga</th>
                         <th>Berat</th>
                         <th>Stock</th>
@@ -43,6 +44,7 @@
                     <tr class="mt-1">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->nama_barang }}</td>
+                        <td>{{ $item->kategori }}</td>
                         <td>Rp.{{ $item->harga }}</td>
                         <td>{{ $item->berat }} (gr)</td>
                         <td>{{ $item->stocks }}</td>
