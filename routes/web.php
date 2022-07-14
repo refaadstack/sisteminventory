@@ -62,6 +62,7 @@ route::group(['middleware'=>['auth','checkRole:admin,superAdmin']],function(){
     route::get('/export/barangIn', [ExportController::class, 'exportbarangIn'])->name('export.barangIn');
     route::get('/export/barangOut', [ExportController::class, 'exportbarangOut'])->name('export.barangOut');
     route::get('/export/supplier', [ExportController::class, 'exportsupplier'])->name('export.supplier');
+    route::get('/export/notaKeluar/{id}', [ExportController::class, 'notaKeluar'])->name('export.notaKeluar');
 });
 
 

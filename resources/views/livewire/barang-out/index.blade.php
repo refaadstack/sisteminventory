@@ -36,6 +36,7 @@
                         <th>Tanggal keluar</th>
                         <th>Jumlah</th>
                         <th>Status</th>
+                        <th>Nota</th>
                         {{-- <th>Di input oleh</th> --}}
                         @if (Auth::user()->role == 'superAdmin')
                         <th>Aksi</th>
@@ -54,6 +55,7 @@
                             @else
                             <span class="badge badge-success">Lunas</span>
                         @endif</td>
+                        <td><a href="{{ route('export.notaKeluar',$item->id) }}" class="btn btn-light">Print Nota</a></td>
                         {{-- <td>{{ $item->user->role }} - {{ $item->user->name }}</td> --}}
                         @if (Auth::user()->role == 'superAdmin')
                         <td>

@@ -31,4 +31,9 @@ class ExportController extends Controller
         $pdf = PDF::loadview('export.supplier', ['supplier' => $supplier]);
         return $pdf->stream('supplier.pdf');
     }
+    public function notaKeluar($id){
+        $nota = BarangOut::find($id);
+        $pdf = PDF::loadview('export.notaKeluar', ['nota' => $nota]);
+        return $pdf->stream('nota-keluar.pdf');
+    }
 }

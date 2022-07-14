@@ -43,8 +43,8 @@
                     <tr class="mt-1">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->nama_barang }}</td>
-                        <td>{{ $item->harga }}</td>
-                        <td>{{ $item->berat }}</td>
+                        <td>Rp.{{ $item->harga }}</td>
+                        <td>{{ $item->berat }} (gr)</td>
                         <td>{{ $item->stocks }}</td>
                         <td class="py-2 text-center"><img src="{{ Storage::url($item->gambar)}}" alt="{{ $item->nama_barang }}" width="150"></td>
                         <td>{{ $item->deskripsi }}</td>
