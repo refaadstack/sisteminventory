@@ -57,7 +57,14 @@
             return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
         }
     ?>
-        <p align="left" style="margin-left: 470px" id="tanggal" class="mb-5">Jambi, {{tgl_indo(date('Y-m-d')) }}</p>
-        <p align="left" class="mt-2" style="margin-left: 470px">Pemilik </p>
+        <p id="tanggal" class="mb-5">
+            <span style="margin-left:10px">Admin yang bertugas</span>
+            <span style="margin-left: 330px">Jambi, {{tgl_indo(date('Y-m-d')) }}</span>
+        </p>
+
+        <p class="mb-5">
+            <span style="margin-left:10px">{{ Auth::user()->name }}</span>
+            <span style="margin-left:440px">Pemilik Klikit Toys</span>
+        </p>
     </body>
 </html>
