@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penjualan;
+use App\Models\BarangOut;
 use Illuminate\Http\Request;
 
 class PenjualanController extends Controller
@@ -14,7 +15,7 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        $penjualan = Penjualan::all();
+        $penjualan = BarangOut::orderBy('created_at', 'DESC')->get();
         return view('backend.penjualan.index', compact(['penjualan']));
     }
 
@@ -47,7 +48,7 @@ class PenjualanController extends Controller
      */
     public function show(Penjualan $penjualan)
     {
-        //
+        return view('backend.penjualan.show', compact(['penjualan']));
     }
 
     /**

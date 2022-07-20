@@ -8,6 +8,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BarangInController;
 use App\Http\Controllers\BarangOutController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\CartController;
 use App\Models\Barang;
 
 /*
@@ -64,6 +65,12 @@ route::group(['middleware'=>['auth','checkRole:admin,superAdmin']],function(){
     route::get('/export/barangOut', [ExportController::class, 'exportbarangOut'])->name('export.barangOut');
     route::get('/export/supplier', [ExportController::class, 'exportsupplier'])->name('export.supplier');
     route::get('/export/notaKeluar/{id}', [ExportController::class, 'notaKeluar'])->name('export.notaKeluar');
+
+    route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+
+    route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
+    route::post('/penjualan', [PenjualanController::class, 'show'])->name('penjualan.show');
 });
 
 

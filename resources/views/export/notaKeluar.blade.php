@@ -9,33 +9,35 @@
         <h3 class="text-center">
             Nota barang keluar Klikit Toys
         </h3>
-        <p class="text-dark">Nomor Nota : KTBK{{ $nota->id }}</p>
-        <p class="text-dart">Nama Pembeli : {{ $nota->nama_pembeli }}</p>
+        <p class="text-dark">Nomor Nota : KTBK{{ $data_pembeli->id}}</p>
+        <p class="text-dart">Nama Pembeli : {{ $data_pembeli->nama_pembeli }}</p>
         <table class="table table-bordered table-sm">
             <thead>
                 <tr>
                     <th>Nama (Barang)</th>
-                    <th>Tanggal Keluar</th></th>
-                    <th>Jumlah</th></th>
+                    <th>Tanggal Keluar</th>
                     <th>Harga</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($nota as $item)
                 <tr>
-                    <td class="text-dark">{{ $nota->barang->nama_barang }}</td>
-                    <td class="text-dark">{{ date('j F Y', strtotime($nota->tanggal_keluar)) }}</td>
-                    <td class="text-dark">{{ $nota->jumlah }}</td>
-                    <td class="text-dark">Rp.{{ $nota->barang->harga }}</td>
-                    <td class="text-dark">@if ($nota->status =="0")
+                    <td class="text-dark">{{ $item->nama_barang }}</td>
+                    <td class="text-dark">{{ date('j F Y', strtotime($item->tanggal_keluar)) }}</td>
+                    <td class="text-dark">Rp.{{ $item->harga }}</td>
+                    <td class="text-dark">
+                    @if ($item->status =="0")
                         <span class="badge badge-warning">Belum lunas</span>
-                        @else
+                    @else
                         <span class="badge badge-success">Lunas</span>
-                    @endif</td>
+                    @endif
+                    </td>
                 </tr>
+                @endforeach
                 <tr>
-                    <td colspan="4">Jumlah dibayar: </td>
-                    <td>Rp.{{ $nota->jumlah * $nota->barang->harga }}</td> 
+                    <td colspan="3">Jumlah dibayar: </td>
+                    <td>Rp.{{ $data_pembeli->total }}</td> 
                 </tr>    
             </tbody>
         </table>

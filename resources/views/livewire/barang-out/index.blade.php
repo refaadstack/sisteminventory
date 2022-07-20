@@ -10,7 +10,15 @@
                 <div class="breadcrumb-item"><a href="#">Index</a></div>
             </div>
         </div>
+              @livewire('barang-out.create')
         <div class="card-wrap">
+
+          @if (session()->has('message'))
+              <div class="alert alert-danger">
+                {{ session('message') }}
+              </div>
+              
+            @endif
           @if(Session::has('success'))
               <script type="text/javascript">
                   function massge() {
@@ -23,7 +31,7 @@
                   window.onload = massge;
               </script>
           @endif
-            <a href="{{ route('barangOut.create') }}" class="btn btn-primary mb-2">Tambah</a>
+            {{-- <a href="{{ route('barangOut.create') }}" class="btn btn-primary mb-2">Tambah</a> --}}
             <div class="card-header bg-primary text-light">Tabel data Barang keluar</div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -32,24 +40,21 @@
                       <tr>
                         <th>No</th>
                         <th>Nama Barang</th>
-                        <th>Nama Pembeli</th>
-                        <th>Tanggal keluar</th>
                         <th>Jumlah</th>
-                        <th>Status</th>
-                        <th>Nota</th>
                         {{-- <th>Di input oleh</th> --}}
-                        @if (Auth::user()->role == 'superAdmin')
+                        {{-- @if (Auth::user()->role == 'superAdmin')
                         <th>Aksi</th>
-                        @endif
+                        @endif --}}
                       </tr>
                     
-                    @foreach ($barangOut as $item)
+                    @foreach ($carts as $item)
                     <tr class="mt-1">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->barang->nama_barang }}</td>
-                        <td>{{ $item->nama_pembeli }}</td>
-                        <td>{{ date('j F Y', strtotime($item->tanggal_keluar)) }}</td>
-                        <td>{{ $item->jumlah }}</td>
+                        <td>{{ $item->quantity }}</td>
+                        {{-- <td>{{ $item->nama_pembeli }}</td> --}}
+                        {{-- <td>{{ date('j F Y', strtotime($item->tanggal_keluar)) }}</td> --}}
+                        {{-- <td>{{ $item->jumlah }}</td>
                         <td>@if ($item->status =="0")
                             <span class="badge badge-warning">Belum lunas</span>
                             @elseif ($item->status =="2")
@@ -58,7 +63,6 @@
                             <span class="badge badge-success">Lunas</span>
                         @endif</td>
                         <td><a href="{{ route('export.notaKeluar',$item->id) }}" class="btn btn-light">Print Nota</a></td>
-                        {{-- <td>{{ $item->user->role }} - {{ $item->user->name }}</td> --}}
                         <td>
                           <a href="{{ route('barangOut.edit',$item->id) }}" class="btn btn-sm btn-warning mb-2">Edit</a>
                           @if (Auth::user()->role == 'superAdmin')
@@ -69,12 +73,14 @@
                             <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Delete</button>
                         </form>
                         </td>
-                        @endif
+                        @endif --}}
                     </tr>
                     @endforeach
                   </tbody>
                 </table>
-                {{ $barangOut->links() }}
+                <a href="{{ route('cart.index') }}" class="btn btn-sm btn-success">Selesaikan pembayaran</a>
+
+                {{ $carts->links() }}
                 </div>
               </div>
         </div>

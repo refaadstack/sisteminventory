@@ -23,6 +23,7 @@
               <li><a class="nav-link" href="{{ route('barangIn.index') }}">Barang Masuk</a></li>
               <li><a class="nav-link" href="{{ route('barangOut.index') }}">Barang Keluar</a></li>
               <li><a class="nav-link" href="{{ route('supplier.index') }}">Supplier</a></li>
+              <li><a class="nav-link" href="{{ route('penjualan.index') }}">Penjualan</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">

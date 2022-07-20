@@ -9,8 +9,7 @@ class BarangOut extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'barang_id', 'nama_pembeli','tanggal_keluar', 'jumlah', 'status',
+    protected $fillable = [ 'nama_pembeli','tanggal_keluar', 'jumlah', 'status', 'total',
     ];
 
     public function barang()
@@ -19,6 +18,6 @@ class BarangOut extends Model
     }
     public function penjualan()
     {
-        return $this->hasOne(Penjualan::class);
+        return $this->hasMany(Penjualan::class,'barangOut_id');
     }
 }

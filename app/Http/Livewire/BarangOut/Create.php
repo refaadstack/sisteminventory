@@ -5,6 +5,7 @@ namespace App\Http\Livewire\BarangOut;
 use Livewire\Component;
 use App\Models\Barang;
 use App\Models\BarangOut;
+use App\Models\Cart;
 
 class Create extends Component
 {
@@ -24,10 +25,8 @@ class Create extends Component
     {
         $this->validate([
             'barang_id' => 'required',
-            'nama_pembeli' => 'required',
-            'tanggal_keluar' => 'required',
             'jumlah' => 'required',
-            'status' => 'required',
+
         ]);
 
 
@@ -36,7 +35,7 @@ class Create extends Component
         if ($this->jumlah > $barang->stocks) {
 
             session()->flash('message', 'Jumlah barang yang anda masukkan melebihi stok barang');
-            return redirect()->route('barangOut.create');
+            return redirect()->route('barangOut.index');
         }
 
         else {
@@ -44,17 +43,20 @@ class Create extends Component
             $barang->stocks = $barang->stocks - $this->jumlah;
             $barang->save();
                
-            $barangOut = BarangOut::create([
+            $cart = Cart::create([
                 'barang_id' => $this->barang_id,
-                'nama_pembeli' => $this->nama_pembeli,
-                'tanggal_keluar' => $this->tanggal_keluar,
-                'jumlah' => $this->jumlah,
-                'status' => $this->status,
+                'user_id' => auth()->user()->id,
+                'quantity' => $this->jumlah,
             ]);
         }
 
         session()->flash('message', 'Data berhasil ditambahkan');
         return redirect()->route('barangOut.index');
+    }
+
+    public function cart(){
+        $cart = Cart::where('user_id', auth()->user()->id)->get();
+        return view('livewire.barang-out.cart', ['carts' => $cart]);
     }
 
 

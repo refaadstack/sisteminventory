@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBarangOutsTable extends Migration
+class CreateCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateBarangOutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('barang_outs', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_pembeli');
-            $table->dateTime('tanggal_keluar');
-            $table->integer('jumlah');
-            $table->string('status');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('barang_id');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateBarangOutsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barang_outs');
+        Schema::dropIfExists('carts');
     }
 }
