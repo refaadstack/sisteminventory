@@ -80,8 +80,11 @@ class PenjualanController extends Controller
      * @param  \App\Models\Penjualan  $penjualan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Penjualan $penjualan)
+    public function destroy($id)
     {
-        //
+        $penjualan = barangOut::find($id);
+        $penjualan->delete();
+
+        return redirect()->route('penjualan.index')->with('success', 'Data berhasil dihapus');
     }
 }

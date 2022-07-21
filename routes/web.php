@@ -80,5 +80,7 @@ route::group(['middleware'=>['auth','checkRole:superAdmin']],function(){
     route::get('user/create', App\Http\Livewire\User\Create::class)->name('user.create');
     route::get('user/edit/{id}', App\Http\Livewire\User\Edit::class)->name('user.edit');
     route::delete('/user/destroy/{id}', [UserController::class,'destroy'])->name('user.destroy');
+
+    route::delete('penjualan/destroy/{id}', [PenjualanController::class,'destroy'])->name('penjualan.destroy');
 });
 require __DIR__.'/auth.php';

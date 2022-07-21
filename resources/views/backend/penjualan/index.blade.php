@@ -11,6 +11,18 @@
                 <div class="breadcrumb-item"><a href="#">Index</a></div>
             </div>
         </div>
+        @if(Session::has('success'))
+          <script type="text/javascript">
+              function massge() {
+              swal(
+                          'Good job!',
+                          'Data Berhasil disimpan!',
+                          'success'
+                      );
+              }
+              window.onload = massge;
+          </script>
+      @endif
             <div class="card-body p-0">
                 <div class="table-responsive">
                   <table class="table table-light table-bordered">
@@ -43,7 +55,7 @@
                         @if (Auth::user()->role == 'superAdmin')
                         <td>
                             <a class="btn btn-sm btn-warning mb-2" href="{{ route('export.notaKeluar',$item->id) }}">nota</a>
-                          <form method="POST" action="{{ route('barangIn.destroy', $item->id) }}">
+                          <form method="POST" action="{{ route('penjualan.destroy', $item->id) }}">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
                             <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Delete</button>
@@ -60,4 +72,28 @@
         </div>
     </div>
 </div>
+@push('scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+   $('.show_confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Kamu yakin mau hapus data ini?`,
+              text: "data yang berkaitan dengan data ini juga akan hilang loh",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      }); 
+</script>
+  
+@endpush
 @endsection

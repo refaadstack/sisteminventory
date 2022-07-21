@@ -20,4 +20,12 @@ class Penjualan extends Model
     {
         return $this->belongsTo(BarangOut::class, 'barangOut_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class, 'barang_id');
+    }
 }

@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\BarangOut;
 use App\Models\BarangIn;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 
 class BarangInController extends Controller
