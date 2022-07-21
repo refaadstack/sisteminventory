@@ -52,11 +52,11 @@
                         <td>{{ $item->deskripsi }}</td>
                         <td>
                           <a href="{{ route('barang.edit',$item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                          <form method="POST" action="{{ route('barang.destroy', $item->id) }}">
+                          {{-- <form method="POST" action="{{ route('barang.destroy', $item->id) }}">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
                             <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Delete</button>
-                        </form>
+                        </form> --}}
                         </td>
                     </tr>
                     @endforeach
