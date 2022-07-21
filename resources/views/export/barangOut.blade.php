@@ -13,20 +13,18 @@
         <table class="table table-bordered table-sm">
             <thead>
                 <tr>
-                    <th>Nama (Barang)</th>
                     <th>Nama Pembeli</th>
-                    <th>Tanggal Keluar</th></th>
-                    <th>Jumlah</th></th>
+                    <th>Tanggal Keluar</th>
+                    <th>Total</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($barangOut as $item)
                 <tr>
-                    <td class="text-dark">{{ $item->barang->nama_barang }}</td>
                     <td class="text-dark">{{ $item->nama_pembeli }}</td>
                     <td class="text-dark">{{ date('j F Y', strtotime($item->tanggal_keluar)) }}</td>
-                    <td class="text-dark">{{ $item->jumlah }}</td>
+                    <td class="text-dark">{{ $item->total }}</td>
                     <td class="text-dark">@if ($item->status =="0")
                         <span class="badge badge-warning">Belum lunas</span>
                         @else

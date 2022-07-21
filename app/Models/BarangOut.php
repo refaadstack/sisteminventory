@@ -14,7 +14,7 @@ class BarangOut extends Model
 
     public function barang()
     {
-        return $this->belongsTo(Barang::class);
+        return $this->hasMany(Barang::class,'id','barang_id');
     }
     public function penjualan()
     {

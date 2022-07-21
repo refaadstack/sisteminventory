@@ -25,6 +25,7 @@ class ExportController extends Controller
     }
     public function exportBarangOut(){
         $barangOut = BarangOut::all();
+        // dd($barangOut);
         $pdf = PDF::loadview('export.barangOut', ['barangOut' => $barangOut]);
         return $pdf->stream('barang-keluar.pdf');
     }
